@@ -8,11 +8,6 @@ const http = require("http");
 const Canvas = require("./models/canvasModel");
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = "your_secret_key";
-const PORT = process.env.PORT || 5000;
-
-server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
 
 
 const userRoutes = require("./routes/userRoutes");
@@ -34,7 +29,7 @@ connectToDB();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-      origin: ["http://localhost:5173", "https://udraw.vercel.app/" , "http://localhost:3000"], 
+      origin: ["http://localhost:5173", "https://udraw.vercel.app" , "http://localhost:3000"], 
       methods: ["GET", "POST"],
     },
   });
@@ -109,4 +104,8 @@ io.on("connection", (socket) => {
       });
     });
 
-server.listen(PORT, () => console.log("Server running on port 5000"));
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
